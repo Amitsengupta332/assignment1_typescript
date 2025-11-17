@@ -13,11 +13,6 @@ const formatValue = (value: values): values => {
   }
   return value;
 };
-
-// console.log(formatValue('hello'));
-// console.log(formatValue(5));
-// console.log(formatValue(true));
-
 // problem 2
 
 const getLength = (value: string | any[]): number => {
@@ -27,10 +22,6 @@ const getLength = (value: string | any[]): number => {
     return value.length;
   }
 };
-
-// console.log(getLength('typescript'));
-// console.log(getLength([10, 20, 30, 40]));
-
 // problem 3
 
 class Person {
@@ -40,18 +31,11 @@ class Person {
     this.name = name;
     this.age = age;
   }
-
   getDetails() {
     return `Name: ${this.name}, Age: ${this.age}`;
   }
 }
-
-// const person1 = new Person('John Doe', 30);
-// console.log(person1.getDetails());
-
-// const person2 = new Person('Alice', 25);
-// console.log(person2.getDetails());
-
+ 
 // problem 4
 
 type Item = {
@@ -61,15 +45,7 @@ type Item = {
 const filterByRating = (items: Item[]): Item[] => {
   return items.filter((item) => item.rating >= 4);
 };
-
-const books = [
-  { title: "Book A", rating: 4.5 },
-  { title: "Book B", rating: 3.2 },
-  { title: "Book C", rating: 5.0 },
-];
-
-// console.log(filterByRating(books));
-
+ 
 // problem 5
 
 type User = {
@@ -81,15 +57,6 @@ type User = {
 const filterActiveUsers = (users: User[]): User[] => {
   return users.filter((user) => user.isActive === true);
 };
-
-// const users = [
-//   { id: 1, name: 'Rakib', email: 'rakib@example.com', isActive: true },
-//   { id: 2, name: 'Asha', email: 'asha@example.com', isActive: false },
-//   { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive: true },
-// ];
-
-// console.log(filterActiveUsers(users));
-
 // problem 6
 interface Book {
   title: string;
@@ -104,12 +71,50 @@ const printBookDetails = (book: Book) => {
     `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availability}`
   );
 };
+ 
+// problem 7
 
-// const myBook: Book = {
-//   title: "The Great Gatsby",
-//   author: "F. Scott Fitzgerald",
-//   publishedYear: 1925,
-//   isAvailable: true,
-// };
+type arr = string | number;
 
-// printBookDetails(myBook);
+const getUniqueValues = (arr1: arr[], arr2: arr[]): arr[] => {
+  const result: arr[] = [];
+
+  for (const item of arr1) {
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  }
+
+  for (const item of arr2) {
+    if (!result.includes(item)) {
+      result.push(item);
+    }
+  }
+
+  return result;
+};
+ 
+
+// problem 8
+type Product = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number;
+};
+const calculateTotalPrice = (products: Product[]): number => {
+  if (products.length === 0) return 0;
+  const result = products
+    .map((item) => {
+      const base = item.price * item.quantity;
+      if (item.discount !== undefined) {
+        const cut = (base * item.discount) / 100;
+        return base - cut;
+      }
+      return base;
+    })
+    .reduce((sum, v) => sum + v, 0);
+
+  return result;
+};
+ 
