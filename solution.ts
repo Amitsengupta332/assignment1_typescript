@@ -1,5 +1,4 @@
-// problem 1
-
+ 
 type values = number | string | boolean;
 const formatValue = (value: values): values => {
   if (typeof value === "string") {
@@ -13,8 +12,7 @@ const formatValue = (value: values): values => {
   }
   return value;
 };
-// problem 2
-
+ 
 const getLength = (value: string | any[]): number => {
   if (typeof value === "string") {
     return value.length;
@@ -22,7 +20,7 @@ const getLength = (value: string | any[]): number => {
     return value.length;
   }
 };
-// problem 3
+ 
 
 class Person {
   name: string;
@@ -36,8 +34,7 @@ class Person {
   }
 }
  
-// problem 4
-
+ 
 type Item = {
   title: string;
   rating: number;
@@ -46,7 +43,8 @@ const filterByRating = (items: Item[]): Item[] => {
   return items.filter((item) => item.rating >= 4);
 };
  
-// problem 5
+ 
+ 
 
 type User = {
   id: number;
