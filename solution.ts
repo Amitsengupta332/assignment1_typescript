@@ -1,4 +1,3 @@
- 
 type values = number | string | boolean;
 const formatValue = (value: values): values => {
   if (typeof value === "string") {
@@ -12,15 +11,18 @@ const formatValue = (value: values): values => {
   }
   return value;
 };
- 
+
 const getLength = (value: string | any[]): number => {
   if (typeof value === "string") {
     return value.length;
-  } else {
+  }
+
+  if (Array.isArray(value)) {
     return value.length;
   }
+
+  return 0; 
 };
- 
 
 class Person {
   name: string;
@@ -33,8 +35,7 @@ class Person {
     return `Name: ${this.name}, Age: ${this.age}`;
   }
 }
- 
- 
+
 type Item = {
   title: string;
   rating: number;
@@ -42,9 +43,6 @@ type Item = {
 const filterByRating = (items: Item[]): Item[] => {
   return items.filter((item) => item.rating >= 4);
 };
- 
- 
- 
 
 type User = {
   id: number;
@@ -69,29 +67,32 @@ const printBookDetails = (book: Book) => {
     `Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${availability}`
   );
 };
- 
-// problem 7
 
 type arr = string | number;
 
 const getUniqueValues = (arr1: arr[], arr2: arr[]): arr[] => {
   const result: arr[] = [];
-
-  for (const item of arr1) {
-    if (!result.includes(item)) {
-      result.push(item);
+  const merged: arr[] = [];
+  for (let i = 0; i < arr1.length; i++) {
+    merged[merged.length] = arr1[i];
+  }
+  for (let i = 0; i < arr2.length; i++) {
+    merged[merged.length] = arr2[i];
+  }
+  for (let i = 0; i < merged.length; i++) {
+    let found = false;
+    for (let j = 0; j < result.length; j++) {
+      if (result[j] === merged[i]) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      result[result.length] = merged[i];
     }
   }
-
-  for (const item of arr2) {
-    if (!result.includes(item)) {
-      result.push(item);
-    }
-  }
-
   return result;
 };
- 
 
 // problem 8
 type Product = {
@@ -115,4 +116,3 @@ const calculateTotalPrice = (products: Product[]): number => {
 
   return result;
 };
- 
